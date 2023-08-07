@@ -1,2 +1,2 @@
 #!/bin/bash
-echo ./, ../, $(ls -A | sort -k1,1 -t '_' -g | tr '\n' ',' | sed 's/,$//')
+ls -map
