@@ -1,2 +1,14 @@
 #!/bin/bash
-printf '%o\n' $(( 5#$( echo $WATER | tr water 01234) + 5#$( echo $STIR | tr stir. 01234 ) )) | tr 01234567 behlnort
+
+# Convert WATER from base 'water' to base 10
+water_base10=$(( 5#$( echo $WATER | tr water 01234) ))
+
+# Convert STIR from base 'stir' to base 10
+stir_base10=$(( 4#$( echo $STIR | tr stir 0123 ) ))
+
+# Add the two numbers
+sum=$(( water_base10 + stir_base10 ))
+
+# Convert the sum to base 'bestchol'
+printf '%o\n' $sum | tr 01234567 bestchol
+
