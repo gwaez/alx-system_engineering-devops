@@ -1,7 +1,2 @@
 #!/bin/bash
-<<<<<<< HEAD
-find . -type f -name '*.gif' | sort -f | xargs -I {} sh -c 'basename {} .gif'
-
-=======
 find -type f -name "*.gif" | rev | cut -d "/" -f l | cut -d '.' -f 2- | rev | LC_ALL=C sort -f
->>>>>>> 941a9f2ca98cf948fd89edd276a052ad974f4d40
