@@ -1,11 +1,9 @@
-#!/bin/bash
-
+heck if an argument is provided
 if [ $# -ne 1 ]; then
 	    echo "Usage: $0 {IP_ADDRESS}"
 	        exit 1
 fi
 
-ping_output=$(ping -c 5 $1)
-
-echo "$ping_output"
+# Ping the provided IP address 5 times and display the output
+ping -c 5 $1
 
