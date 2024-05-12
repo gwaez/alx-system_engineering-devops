@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Display a user-oriented list of currently running processes
+ps -e --forest -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --sort=pid
+
