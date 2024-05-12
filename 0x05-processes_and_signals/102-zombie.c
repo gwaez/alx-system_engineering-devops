@@ -1,29 +1,43 @@
-#include <stdio.h>
+nclude <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
 
 /**
- * main - zombies
+ * main - Creates 5 zombie processes
  *
- * Description: make five zombies
- * Return: 0 for success
+ * Return: Always 0
  */
 int main(void)
 {
-	int i;
-	pid_t pidme;
+    int i;
+    pid_t pidme;
 
-	i = 0;
-	while (i < 5)
-	{
-		pidme = fork();
-		if (pidme)
-			printf("Zombie process created, PID: %i\n", pidme);
-		else
-			exit(0);
-		i++;
-	}
-	sleep(100);
-	return (0);
+    for (i = 0; i < 5; i++)
+    {
+        pidme = fork();
+        if (pidme > 0)
+        {
+            printf("Zombie process created, PID: %d\n", pidme);
+            sleep(1); // Give time for the child to exit and become a zombie
+        }
+        else if (pidme == 0)
+        {
+            exit(0);
+        }
+        else
+        {
+            perror("fork");
+            exit(1);
+        }
+    }
+
+    // Parent process waits for child processes to avoid leaving zombies
+    for (i = 0; i < 5; i++)
+    {
+        wait(NULL);
+    }
+
+    return 0;
+}
 }
