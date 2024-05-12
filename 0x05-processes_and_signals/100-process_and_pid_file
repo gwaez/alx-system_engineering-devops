@@ -2,12 +2,18 @@
 # Create PID file and handle signals
 
 # Create PID file in /var/run
-sudo bash -c 'echo $$ > /var/run/codingschoolscript.pid'
+echo $$ > /var/run/myscript.pid
 
 # Trap signals and define cleanup actions
-trap "sudo rm -f /var/run/codingschoolscript.pid; exit" SIGQUIT
-trap "sudo rm -f /var/run/codingschoolscript.pid; echo I hate the kill command; exit" SIGTERM
-trap "echo Y U no love me?!" SIGINT
+trap 'cleanup' SIGTERM SIGQUIT
+trap 'echo Y U no love me?!' SIGINT
+
+# Function to clean up and terminate script
+cleanup() {
+    rm -f /var/run/myscript.pid
+    echo "I hate the kill command"
+    exit
+}
 
 # Infinite loop displaying a message
 while :
