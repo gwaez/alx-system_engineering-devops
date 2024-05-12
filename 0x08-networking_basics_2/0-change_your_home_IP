@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-# This script changes the IP resolution for localhost and facebook.com
+#!/bin/bash
 
 # Check if running as root
 if [[ $(id -u) -ne 0 ]]; then
@@ -13,7 +11,7 @@ echo "Changing localhost IP..."
 sed -i 's/127.0.0.1 localhost/127.0.0.2 localhost/' /etc/hosts
 
 echo "Changing facebook.com IP..."
-sed -i 's/\([[:digit:]]\+\.\)\{3\}[[:digit:]]\+ facebook.com/8.8.8.8 facebook.com/' /etc/hosts
+sed -i 's/facebook.com/8.8.8.8 facebook.com/' /etc/hosts
 
 echo "IP configuration changed successfully."
 
